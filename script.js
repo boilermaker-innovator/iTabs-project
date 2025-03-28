@@ -415,8 +415,8 @@ function showThankYouMessage(reactionType, emoji, text) {
         thumbsIPopup.innerHTML = originalContent;
         
         // Re-initialize reaction handlers
-        const reactionOptions = document.querySelectorAll('.reaction-option');
-        reactionOptions.forEach(option => {
+        const newReactionOptions = thumbsIPopup.querySelectorAll('.reaction-option');
+        newReactionOptions.forEach(option => {
             option.addEventListener('click', function() {
                 const reactionType = this.getAttribute('data-reaction');
                 const reactionEmoji = this.querySelector('.reaction-emoji').textContent;
@@ -426,6 +426,9 @@ function showThankYouMessage(reactionType, emoji, text) {
                 showThankYouMessage(reactionType, reactionEmoji, reactionText);
             });
         });
+        
+        // Hide popup after showing thank you message
+        thumbsIPopup.classList.remove('active');
     }, 5000); // Show thank you for 5 seconds
 }
 
